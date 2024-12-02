@@ -34,8 +34,4 @@ public class Factura implements Serializable{
 	@Column(name = "cantidad")
 	private int cantidad;
 
-	@Column(name = "estado")
-	@Enumerated(EnumType.STRING)
-	private Estado estado;
-
 }

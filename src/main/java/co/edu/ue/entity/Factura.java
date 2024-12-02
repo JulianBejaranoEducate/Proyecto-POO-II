@@ -139,9 +139,28 @@ public class Factura implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Factura [id_factura=" + id_factura + ", fecha_factura=" + fecha_factura + ", id_usario=" + id_usario
-				+ ", metodo_pago=" + metodo_pago + ", id_boleta=" + id_boleta + ", precio_unitario=" + precio_unitario
-				+ ", cantidad=" + cantidad + ", total=" + total + ", usuarios=" + usuarios + ", boletas=" + boletas
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Factura [id_factura=");
+		builder.append(id_factura);
+		builder.append(", fecha_factura=");
+		builder.append(fecha_factura);
+		builder.append(", id_usario=");
+		builder.append(id_usario);
+		builder.append(", metodo_pago=");
+		builder.append(metodo_pago);
+		builder.append(", id_boleta=");
+		builder.append(id_boleta);
+		builder.append(", precio_unitario=");
+		builder.append(precio_unitario);
+		builder.append(", cantidad=");
+		builder.append(cantidad);
+		builder.append(", total=");
+		builder.append(total);
+		builder.append(", usuarios=");
+		builder.append(usuarios);
+		builder.append(", boletas=");
+		builder.append(boletas);
+		builder.append("]");
+		return builder.toString();
 	}
 }

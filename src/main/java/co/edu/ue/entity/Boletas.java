@@ -86,8 +86,20 @@ public class Boletas implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Boletas [id_boleta=" + id_boleta + ", asiento_asignado=" + asiento_asignado + ", id_tipoboleta="
-				+ id_tipoboleta + ", id_pelicula=" + id_pelicula + ", tipoBoleta=" + tipoBoleta + ", pelicula="
-				+ pelicula + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Boletas [id_boleta=");
+		builder.append(id_boleta);
+		builder.append(", asiento_asignado=");
+		builder.append(asiento_asignado);
+		builder.append(", id_tipoboleta=");
+		builder.append(id_tipoboleta);
+		builder.append(", id_pelicula=");
+		builder.append(id_pelicula);
+		builder.append(", tipoBoleta=");
+		builder.append(tipoBoleta);
+		builder.append(", pelicula=");
+		builder.append(pelicula);
+		builder.append("]");
+		return builder.toString();
 	}
 }

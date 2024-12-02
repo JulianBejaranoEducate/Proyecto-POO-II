@@ -2,15 +2,14 @@ package co.edu.ue.dao;
 
 import java.util.List;
 
-import co.edu.ue.entity.Dato;
+import co.edu.ue.entity.Factura;
 
 public interface IFacturaDao {
 	// declaraciones de metodos abstractos o constantes
-		List<Dato> guardarDato(Dato dato);
-		Dato actualizarDato(Dato dato);
+		List<Factura> guardarFactura(Factura factura);
+		Factura actualizarFactura(Factura factura);
 		
 		// consultas
-		List<Dato> listaCompleta();
-		Dato busquedaPorId(int id);
-		Dato busquedaPorEmail(String email);
+		List<Factura> listaCompleta();
+		Factura busquedaPorId(int id);
 }

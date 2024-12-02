@@ -29,7 +29,6 @@ public class BoletasDao implements IBoletasDao{
 
 	@Override
 	public Boletas busquedaPorId(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

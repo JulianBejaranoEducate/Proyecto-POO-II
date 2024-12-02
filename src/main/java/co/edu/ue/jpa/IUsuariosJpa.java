@@ -6,4 +6,6 @@ import co.edu.ue.entity.Usuarios;
 
 public interface IUsuariosJpa extends JpaRepository<Usuarios, Integer>{
 
+    Usuarios findByEmailUser(String emailUser);
+
 }

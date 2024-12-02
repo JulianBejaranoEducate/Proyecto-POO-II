@@ -18,77 +18,62 @@ public class Usuarios implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Integer IdUser;
+    private Integer idUser;
 
     @Column(name = "nombrecompleto")
-    private String NameUser;
+    private String nameUser;
 
     @Column(name = "email")
-    private String EmailUser;
+    private String emailUser;
 
     @Column(name = "numero_telefono")
-    private int NumeroUser;
+    private int numeroUser;
 
     @Column(name = "estadousuario")
-    private int estadousuario;
+    private int estadoUsuario;
 
     public Usuarios() {
 		super();
 	}
 
-    public Usuarios(int estadousuario) {
-		super();
-		this.estadousuario = estadousuario;
-	}
-
-
 	public Integer getIdUser() {
-		return IdUser;
+		return idUser;
 	}
 
 	public void setIdUser(Integer idUser) {
-		IdUser = idUser;
+		this.idUser = idUser;
 	}
 
 	public String getNameUser() {
-        return NameUser;
-    }
+		return nameUser;
+	}
 
-    public void setNameUser(String nameUser) {
-        NameUser = nameUser;
-    }
+	public void setNameUser(String nameUser) {
+		this.nameUser = nameUser;
+	}
 
-    public String getEmailUser() {
-        return EmailUser;
-    }
+	public String getEmailUser() {
+		return emailUser;
+	}
 
-    public void setEmailUser(String emailUser) {
-        EmailUser = emailUser;
-    }
+	public void setEmailUser(String emailUser) {
+		this.emailUser = emailUser;
+	}
 
-    public int getNumeroUser() {
-        return NumeroUser;
-    }
+	public int getNumeroUser() {
+		return numeroUser;
+	}
 
-    public void setNumeroUser(int numeroUser) {
-        NumeroUser = numeroUser;
-    }
+	public void setNumeroUser(int numeroUser) {
+		this.numeroUser = numeroUser;
+	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Usuarios [id=");
-		builder.append(IdUser);
-		builder.append(", NameUser=");
-		builder.append(NameUser);
-		builder.append(", EmailUser=");
-		builder.append(EmailUser);
-		builder.append(", NumeroUser=");
-		builder.append(NumeroUser);
-		builder.append(", estadousuario=");
-		builder.append(estadousuario);
-		builder.append("]");
-		return builder.toString();
+	public int getEstadoUsuario() {
+		return estadoUsuario;
+	}
+
+	public void setEstadoUsuario(int estadoUsuario) {
+		this.estadoUsuario = estadoUsuario;
 	}
     
     

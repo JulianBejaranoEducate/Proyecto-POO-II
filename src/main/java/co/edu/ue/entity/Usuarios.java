@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-@NamedQuery(name = "usuarios.findAll", query = "SELECT u FROM Usuarios u")
+@NamedQuery(name = "usuarios.findAll", query = "SELECT u FROM usuarios u")
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -36,15 +36,13 @@ public class Usuarios implements Serializable {
 		super();
 	}
 
-	public EstadoUser.Estado getEstadousuario() {
-        return EstadoUser.Estado.fromCodigo(estadousuario); 
-    }
+    public Usuarios(int estadousuario) {
+		super();
+		this.estadousuario = estadousuario;
+	}
 
-    public void setEstadousuario(EstadoUser.Estado estadoUser) {
-        this.estadousuario = estadoUser.getCodigo(); 
-    }
 
-    public Integer getIdUser() {
+	public Integer getIdUser() {
 		return IdUser;
 	}
 

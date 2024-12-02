@@ -10,16 +10,17 @@ import co.edu.ue.jpa.IBoletasJpa;
 public class BoletasDao implements IBoletasDao{
 	
 	@Autowired
-	IBoletasJpa Jpa;
+	IBoletasJpa jpa;
 
 	@Override
 	public List<Boletas> guardarBoleta(Boletas boletas) {
-		return null;
+		jpa.save(boletas);
+		return listaCompleta();
 	}
 
 	@Override
 	public Boletas actualizarBoleta(Boletas boletas) {
-		return null;
+		return jpa.save(boletas);
 	}
 
 	@Override

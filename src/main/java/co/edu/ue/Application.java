@@ -19,3 +19,5 @@ public class Application {
 }
 
 //holaMiguel
+//Miguel peliculas y genero
+//Julian

@@ -17,8 +17,8 @@ public class Usuarios implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id_usuario")
+    private Integer IdUser;
 
     @Column(name = "nombrecompleto")
     private String NameUser;
@@ -32,7 +32,11 @@ public class Usuarios implements Serializable {
     @Column(name = "estadousuario")
     private int estadousuario;
 
-    public EstadoUser.Estado getEstadousuario() {
+    public Usuarios() {
+		super();
+	}
+
+	public EstadoUser.Estado getEstadousuario() {
         return EstadoUser.Estado.fromCodigo(estadousuario); 
     }
 
@@ -40,15 +44,15 @@ public class Usuarios implements Serializable {
         this.estadousuario = estadoUser.getCodigo(); 
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getIdUser() {
+		return IdUser;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setIdUser(Integer idUser) {
+		IdUser = idUser;
+	}
 
-    public String getNameUser() {
+	public String getNameUser() {
         return NameUser;
     }
 
@@ -71,4 +75,23 @@ public class Usuarios implements Serializable {
     public void setNumeroUser(int numeroUser) {
         NumeroUser = numeroUser;
     }
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Usuarios [id=");
+		builder.append(IdUser);
+		builder.append(", NameUser=");
+		builder.append(NameUser);
+		builder.append(", EmailUser=");
+		builder.append(EmailUser);
+		builder.append(", NumeroUser=");
+		builder.append(NumeroUser);
+		builder.append(", estadousuario=");
+		builder.append(estadousuario);
+		builder.append("]");
+		return builder.toString();
+	}
+    
+    
 }

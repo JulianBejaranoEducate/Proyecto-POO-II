@@ -37,8 +37,8 @@ public class UsuarioDao implements IUsuarioDao {
     }
 
     @Override
-    public Usuarios busquedaPorEmail(String email) {
-        return jpa.findByEmailUser(email); 
+    public Usuarios busquedaPorEmail(String emailUser) {
+        return jpa.findByEmailUser(emailUser); 
     }
 
     @Override

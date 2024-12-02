@@ -1,4 +1,4 @@
-package co.edu.ue.entity;
+	package co.edu.ue.entity;
 
 import java.io.Serializable;
 import java.sql.Date;

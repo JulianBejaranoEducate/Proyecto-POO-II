@@ -35,6 +35,15 @@ public class Usuarios implements Serializable {
     public Usuarios() {
 		super();
 	}
+    public Usuarios(Integer idUser, String nameUser, String emailUser, int numeroUser, int estadoUsuario) {
+        super();
+        this.idUser = idUser;
+        this.nameUser = nameUser;
+        this.emailUser = emailUser;
+        this.numeroUser = numeroUser;
+        this.estadoUsuario = estadoUsuario;
+    }
+
 
 	public Integer getIdUser() {
 		return idUser;

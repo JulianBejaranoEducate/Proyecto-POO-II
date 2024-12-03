@@ -1,4 +1,4 @@
-	package co.edu.ue.entity;
+package co.edu.ue.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -11,102 +11,86 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
-public class Funciones {
-	@Entity
-	@Table(name = "funciones")
-	@NamedQuery(name = "funciones.findAll", query = "SELECT f FROM funciones f")
-	public class Usuarios implements Serializable {
-	    private static final long serialVersionUID = 1L;
-	
-	    @Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "id_funcion")
-	    private Integer IdFuncion;
-	    
-	    @Column(name = "fecha")
-	    private Date FechaFuncion;
-	    
-	    @Column(name = "hora")
-	    private Time HoraFuncion;
-	    
-	    @Column(name = "sala")
-	    private String SalaFuncion;
-	    
-	    @Column(name = "estado")
-	    private int EstadoFuncion;
-	    
-	
-		public Usuarios(Integer idFuncion, Date fechaFuncion, Time horaFuncion, String salaFuncion, int estadoFuncion) {
-			super();
-			IdFuncion = idFuncion;
-			FechaFuncion = fechaFuncion;
-			HoraFuncion = horaFuncion;
-			SalaFuncion = salaFuncion;
-			EstadoFuncion = estadoFuncion;
-		}
+@Entity
+@Table(name = "funciones")
+@NamedQuery(name = "funciones.findAll", query = "SELECT f FROM Funciones f")
+public class Funciones implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-		public Integer getIdFuncion() {
-			return IdFuncion;
-		}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_funcion")
+    private Integer idFuncion;
 
-		public void setIdFuncion(Integer idFuncion) {
-			IdFuncion = idFuncion;
-		}
+    @Column(name = "fecha")
+    private Date fechaFuncion;
 
-		public Date getFechaFuncion() {
-			return FechaFuncion;
-		}
+    @Column(name = "hora")
+    private Time horaFuncion;
 
-		public void setFechaFuncion(Date fechaFuncion) {
-			FechaFuncion = fechaFuncion;
-		}
+    @Column(name = "sala")
+    private String salaFuncion;
 
-		public Time getHoraFuncion() {
-			return HoraFuncion;
-		}
+    @Column(name = "estado")
+    private int estadoFuncion;
 
-		public void setHoraFuncion(Time horaFuncion) {
-			HoraFuncion = horaFuncion;
-		}
+    public Funciones() {
+        super();
+    }
 
-		public String getSalaFuncion() {
-			return SalaFuncion;
-		}
+    public Funciones(Integer idFuncion, Date fechaFuncion, Time horaFuncion, String salaFuncion, int estadoFuncion) {
+        super();
+        this.idFuncion = idFuncion;
+        this.fechaFuncion = fechaFuncion;
+        this.horaFuncion = horaFuncion;
+        this.salaFuncion = salaFuncion;
+        this.estadoFuncion = estadoFuncion;
+    }
 
-		public void setSalaFuncion(String salaFuncion) {
-			SalaFuncion = salaFuncion;
-		}
+    public Integer getIdFuncion() {
+        return idFuncion;
+    }
 
-		public int getEstadoFuncion() {
-			return EstadoFuncion;
-		}
+    public void setIdFuncion(Integer idFuncion) {
+        this.idFuncion = idFuncion;
+    }
 
-		public void setEstadoFuncion(int estadoFuncion) {
-			EstadoFuncion = estadoFuncion;
-		}
+    public Date getFechaFuncion() {
+        return fechaFuncion;
+    }
 
-		public static long getSerialversionuid() {
-			return serialVersionUID;
-		}
+    public void setFechaFuncion(Date fechaFuncion) {
+        this.fechaFuncion = fechaFuncion;
+    }
 
-		@Override
-		public String toString() {
-			StringBuilder builder = new StringBuilder();
-			builder.append("Usuarios [IdFuncion=");
-			builder.append(IdFuncion);
-			builder.append(", FechaFuncion=");
-			builder.append(FechaFuncion);
-			builder.append(", HoraFuncion=");
-			builder.append(HoraFuncion);
-			builder.append(", SalaFuncion=");
-			builder.append(SalaFuncion);
-			builder.append(", EstadoFuncion=");
-			builder.append(EstadoFuncion);
-			builder.append("]");
-			return builder.toString();
-		}
-	    
-	    
-	}
+    public Time getHoraFuncion() {
+        return horaFuncion;
+    }
 
+    public void setHoraFuncion(Time horaFuncion) {
+        this.horaFuncion = horaFuncion;
+    }
+
+    public String getSalaFuncion() {
+        return salaFuncion;
+    }
+
+    public void setSalaFuncion(String salaFuncion) {
+        this.salaFuncion = salaFuncion;
+    }
+
+    public int getEstadoFuncion() {
+        return estadoFuncion;
+    }
+
+    public void setEstadoFuncion(int estadoFuncion) {
+        this.estadoFuncion = estadoFuncion;
+    }
+
+    @Override
+    public String toString() {
+        return "Funciones [idFuncion=" + idFuncion + ", fechaFuncion=" + fechaFuncion + ", horaFuncion=" + horaFuncion
+                + ", salaFuncion=" + salaFuncion + ", estadoFuncion=" + estadoFuncion + "]";
+    }
 }
+

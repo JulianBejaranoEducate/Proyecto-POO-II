@@ -1,54 +1,59 @@
 package co.edu.ue.controller;
 
+import co.edu.ue.entity.Funciones;
+import co.edu.ue.service.FuncionesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import co.edu.ue.entity.Funciones;
-import co.edu.ue.service.IFuncionesService;
-
 @RestController
-@RequestMapping("/funciones")
 public class FuncionesController {
 
     @Autowired
-    private IFuncionesService funcionesService;
+    private FuncionesService funcionesService;
 
-    @GetMapping
-    public ResponseEntity<List<Funciones>> obtenerTodas() {
-        return ResponseEntity.ok(funcionesService.obtenerTodas());
+    @PostMapping(value = "funcion-sav", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Funciones> postFuncion(@RequestBody Funciones funcion) {
+        Funciones savedFuncion = funcionesService.guardar(funcion);
+        return new ResponseEntity<>(savedFuncion, HttpStatus.CREATED);
     }
 
-    @PostMapping
-    public ResponseEntity<Funciones> guardar(@RequestBody Funciones funcion) {
-        return ResponseEntity.ok(funcionesService.guardar(funcion));
+    @GetMapping(value = "funcion-all", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Funciones>> getAllFunciones() {
+        List<Funciones> funcionesList = funcionesService.obtenerTodas();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("cant-funciones", String.valueOf(funcionesList.size()));
+        return new ResponseEntity<>(funcionesList, headers, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Funciones> actualizar(@PathVariable int id, @RequestBody Funciones funcion) {
-        funcion.setIdFuncion(id); 
-        return ResponseEntity.ok(funcionesService.actualizar(funcion));
+    @PutMapping(value = "funcion-up")
+    public ResponseEntity<Funciones> putFuncion(@RequestBody Funciones funcion) {
+        Funciones updatedFuncion = funcionesService.actualizar(funcion);
+        return new ResponseEntity<>(updatedFuncion, HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Funciones> buscarPorId(@PathVariable int id) {
+    @GetMapping(value = "funcion-id")
+    public ResponseEntity<Funciones> getIdFuncion(@RequestParam("id") int id) {
         Funciones funcion = funcionesService.buscarPorId(id);
         if (funcion != null) {
-            return ResponseEntity.ok(funcion);
+            return new ResponseEntity<>(funcion, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/darDeBaja/{id}")
-    public ResponseEntity<?> darDeBaja(@PathVariable int id) {
-        try {
-            funcionesService.darDeBaja(id);
-            return ResponseEntity.ok("Función dada de baja correctamente.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error al dar de baja la función.");
-        }
+    @PutMapping(value = "funcion-baja")
+    public ResponseEntity<String> bajaFuncion(@RequestParam("id") int id) {
+        funcionesService.darDeBaja(id);
+        return new ResponseEntity<>("Funcion dada de baja correctamente", HttpStatus.OK);
     }
 }
-

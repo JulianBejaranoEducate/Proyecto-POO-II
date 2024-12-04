@@ -1,68 +1,75 @@
 package co.edu.ue.controller;
 
+import co.edu.ue.entity.Usuarios;
+import co.edu.ue.service.UsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import co.edu.ue.entity.Usuarios;
-import co.edu.ue.service.IUsuarioService;
-
 @RestController
-@RequestMapping("/usuarios")
 public class UsuariosController {
 
     @Autowired
-    private IUsuarioService usuariosService;
+    private UsuariosService usuariosService;
+
+    // Crear un nuevo usuario
+    @PostMapping(value = "usuario-sav", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Usuarios> postUsuario(@RequestBody Usuarios usuario) {
+        Usuarios savedUsuario = usuariosService.guardar(usuario);
+        return new ResponseEntity<>(savedUsuario, HttpStatus.CREATED);
+    }
 
     // Obtener todos los usuarios
-    @GetMapping
-    public ResponseEntity<List<Usuarios>> obtenerTodos() {
-        return ResponseEntity.ok(usuariosService.obtenerTodos());
+    @GetMapping(value = "usuario-all", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Usuarios>> getAllUsuarios() {
+        List<Usuarios> usuariosList = usuariosService.obtenerTodos();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("cant-usuarios", String.valueOf(usuariosList.size()));
+        return new ResponseEntity<>(usuariosList, headers, HttpStatus.OK);
     }
 
-    // Guardar un nuevo usuario
-    @PostMapping
-    public ResponseEntity<Usuarios> guardar(@RequestBody Usuarios usuario) {
-        return ResponseEntity.ok(usuariosService.guardar(usuario));
-    }
-
-    // Actualizar un usuario existente
-    @PutMapping("/{id}")
-    public ResponseEntity<Usuarios> actualizar(@PathVariable int id, @RequestBody Usuarios usuario) {
-        usuario.setIdUser(id); // Asegurarse de que el ID coincida
-        return ResponseEntity.ok(usuariosService.actualizar(usuario));
+    // Actualizar un usuario
+    @PutMapping(value = "usuario-up")
+    public ResponseEntity<Usuarios> putUsuario(@RequestBody Usuarios usuario) {
+        Usuarios updatedUsuario = usuariosService.actualizar(usuario);
+        return new ResponseEntity<>(updatedUsuario, HttpStatus.ACCEPTED);
     }
 
     // Buscar un usuario por ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Usuarios> buscarPorId(@PathVariable int id) {
+    @GetMapping(value = "usuario-id")
+    public ResponseEntity<Usuarios> getIdUsuario(@RequestParam("id") int id) {
         Usuarios usuario = usuariosService.buscarPorId(id);
         if (usuario != null) {
-            return ResponseEntity.ok(usuario);
+            return new ResponseEntity<>(usuario, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.notFound().build();
     }
 
-    // Buscar un usuario por email
-    @GetMapping("/buscarPorEmail")
-    public ResponseEntity<Usuarios> buscarPorEmail(@RequestParam String email) {
+    // Buscar un usuario por correo electrónico
+    @GetMapping(value = "usuario-email")
+    public ResponseEntity<Usuarios> getByEmail(@RequestParam("email") String email) {
         Usuarios usuario = usuariosService.buscarPorEmail(email);
         if (usuario != null) {
-            return ResponseEntity.ok(usuario);
+            return new ResponseEntity<>(usuario, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.notFound().build();
     }
 
-    // Dar de baja a un usuario
-    @PutMapping("/darDeBaja/{id}")
-    public ResponseEntity<?> darDeBaja(@PathVariable int id) {
-        try {
-            usuariosService.darDeBaja(id);
-            return ResponseEntity.ok("Usuario dado de baja correctamente.");
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body("Error al dar de baja al usuario.");
-        }
+    // Dar de baja un usuario
+    @PutMapping(value = "usuario-baja")
+    public ResponseEntity<String> bajaUsuario(@RequestParam("id") int id) {
+        usuariosService.darDeBaja(id);
+        return new ResponseEntity<>("Usuario dado de baja correctamente", HttpStatus.OK);
     }
 }

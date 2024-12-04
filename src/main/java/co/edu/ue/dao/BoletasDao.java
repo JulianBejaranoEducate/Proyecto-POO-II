@@ -32,9 +32,9 @@ public class BoletasDao implements IBoletasDao{
 	public Boletas busquedaPorId(int id) {
 		return jpa.findById(id).orElse(null);
 	}
-	
+
 	@Override
-    public void eliminarFuncion(int id) {
+	public void elimnarBoleta(int id) {
         jpa.deleteById(id);
-    }
+	}
 }

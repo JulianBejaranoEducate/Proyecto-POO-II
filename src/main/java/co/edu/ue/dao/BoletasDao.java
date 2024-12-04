@@ -25,12 +25,16 @@ public class BoletasDao implements IBoletasDao{
 
 	@Override
 	public List<Boletas> listaCompleta() {
-		return null;
+		return jpa.findAll();
 	}
 
 	@Override
 	public Boletas busquedaPorId(int id) {
-		return null;
+		return jpa.findById(id).orElse(null);
 	}
-
+	
+	@Override
+    public void eliminarFuncion(int id) {
+        jpa.deleteById(id);
+    }
 }

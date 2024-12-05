@@ -23,18 +23,12 @@ public class PeliculaController {
     @Autowired
     private IPeliculaService peliculaService;
 
-    /**
-     * Crear una nueva película
-     */
     @PostMapping(value = "pelicula-sav", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Pelicula> postPelicula(@RequestBody Pelicula pelicula) {
         Pelicula savedPelicula = peliculaService.guardar(pelicula);
         return new ResponseEntity<>(savedPelicula, HttpStatus.CREATED);
     }
 
-    /**
-     * Obtener todas las películas
-     */
     @GetMapping(value = "pelicula-all", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Pelicula>> getAllPeliculas() {
         List<Pelicula> peliculasList = peliculaService.obtenerTodas();
@@ -43,18 +37,12 @@ public class PeliculaController {
         return new ResponseEntity<>(peliculasList, headers, HttpStatus.OK);
     }
 
-    /**
-     * Actualizar una película
-     */
     @PutMapping(value = "pelicula-up")
     public ResponseEntity<Pelicula> putPelicula(@RequestBody Pelicula pelicula) {
         Pelicula updatedPelicula = peliculaService.actualizar(pelicula);
         return new ResponseEntity<>(updatedPelicula, HttpStatus.ACCEPTED);
     }
 
-    /**
-     * Buscar una película por ID
-     */
     @GetMapping(value = "pelicula-id")
     public ResponseEntity<Pelicula> getIdPelicula(@RequestParam("id") int id) {
         Pelicula pelicula = peliculaService.buscarPorId(id);
@@ -65,9 +53,6 @@ public class PeliculaController {
         }
     }
 
-    /**
-     * Eliminar una película por ID
-     */
     @DeleteMapping(value = "pelicula-delete")
     public ResponseEntity<Void> deletePelicula(@RequestParam("id") int id) {
         peliculaService.eliminar(id);

@@ -1,5 +1,7 @@
 package co.edu.ue.security;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,8 +12,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.List;
 
 @EnableWebSecurity
 @Configuration
@@ -37,11 +37,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "boletas-delete").hasRole("ADMIN")
                 		
                         // Rutas para Usuarios
-                        .requestMatchers(HttpMethod.POST, "usuario-sav").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "usuario-all").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "usuario-id\"").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "usuario-up").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "usuario-baja").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/usuarios/{id}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/usuarios/{id}").hasRole("ADMIN")
 
                         // Rutas para Funciones
                         .requestMatchers(HttpMethod.POST, "/funciones/crear").hasRole("ADMIN")

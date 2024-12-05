@@ -1,6 +1,7 @@
 package co.edu.ue.service;
 
 import java.util.List;
+
 import co.edu.ue.entity.Usuarios;
 
 public interface IUsuarioService {
@@ -9,5 +10,5 @@ public interface IUsuarioService {
     Usuarios actualizar(Usuarios usuario); 
     Usuarios buscarPorId(int id); 
     Usuarios buscarPorEmail(String email);
-    void darDeBaja(int id); 
+    void eliminar(int id); 
 }

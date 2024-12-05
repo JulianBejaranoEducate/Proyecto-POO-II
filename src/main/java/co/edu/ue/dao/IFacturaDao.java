@@ -5,11 +5,9 @@ import java.util.List;
 import co.edu.ue.entity.Factura;
 
 public interface IFacturaDao {
-	// declaraciones de metodos abstractos o constantes
-		List<Factura> guardarFactura(Factura factura);
-		Factura actualizarFactura(Factura factura);
-		
-		// consultas
-		List<Factura> listaCompleta();
-		Factura busquedaPorId(int id);
+	List<Factura> listaCompleta();
+	Factura guardarFactura(Factura factura);
+    Factura actualizarFactura(Factura factura);
+    Factura encontrarFacturaId(int id);
+    void eliminarFacturaId(int id);
 }

@@ -13,22 +13,29 @@ public class FacturaDao implements IFacturaDao{
 	IFacturaJpa jpa;
 
 	@Override
-	public List<Factura> guardarFactura(Factura factura) {
-		return null;
+	public List<Factura> listaCompleta() {
+		return jpa.findAll();
+	}
+
+	@Override
+	public Factura guardarFactura(Factura factura) {
+		return jpa.save(factura);
 	}
 
 	@Override
 	public Factura actualizarFactura(Factura factura) {
-		return null;
+		return jpa.save(factura);
 	}
 
 	@Override
-	public List<Factura> listaCompleta() {
-		return null;
+	public Factura encontrarFacturaId(int id) {
+		return jpa.findById(id).orElse(null);
 	}
 
 	@Override
-	public Factura busquedaPorId(int id) {
-		return null;
+	public void eliminarFacturaId(int id) {
+		jpa.deleteById(id);
+		
 	}
+
 }

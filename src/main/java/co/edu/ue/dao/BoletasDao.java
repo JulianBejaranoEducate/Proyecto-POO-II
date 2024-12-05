@@ -13,28 +13,27 @@ public class BoletasDao implements IBoletasDao{
 	IBoletasJpa jpa;
 
 	@Override
-	public List<Boletas> guardarBoleta(Boletas boletas) {
-		jpa.save(boletas);
-		return listaCompleta();
-	}
-
-	@Override
-	public Boletas actualizarBoleta(Boletas boletas) {
-		return jpa.save(boletas);
-	}
-
-	@Override
 	public List<Boletas> listaCompleta() {
 		return jpa.findAll();
 	}
 
 	@Override
-	public Boletas busquedaPorId(int id) {
+	public Boletas guardarBoleta(Boletas boleta) {
+		return jpa.save(boleta);
+	}
+
+	@Override
+	public Boletas actualizarBoleta(Boletas boleta) {
+		return jpa.save(boleta);
+	}
+
+	@Override
+	public Boletas encontrarBoletaId(int id) {
 		return jpa.findById(id).orElse(null);
 	}
 
 	@Override
-	public void elimnarBoleta(int id) {
-        jpa.deleteById(id);
+	public void eliminarBoletaId(int id) {
+		jpa.deleteById(id);
 	}
 }

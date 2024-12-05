@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "peliculas")
-@NamedQuery(name = "Dato.findAll", query = "SELECT p FROM Pelicula p")
+@NamedQuery(name = "pelicula.findAll", query = "SELECT p FROM Pelicula p")
 public class Pelicula implements Serializable {
     private static final long serialVersionUID = 1L;
 

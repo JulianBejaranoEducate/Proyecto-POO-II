@@ -1,5 +1,7 @@
 package co.edu.ue.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,8 +13,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "generos")
-@NamedQuery(name = "Dato.findAll", query = "SELECT g FROM GenerosPelicula g")
-public class GeneroPelicula {
+@NamedQuery(name = "generos.findAll", query = "SELECT g FROM GenerosPelicula g")
+public class GeneroPelicula implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -51,7 +53,4 @@ public class GeneroPelicula {
         sb.append('}');
         return sb.toString();
     }
-
-
-
 }

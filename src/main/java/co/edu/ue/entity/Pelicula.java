@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
@@ -25,11 +24,11 @@ public class Pelicula implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
-    @JoinColumn(name = "id_funcion")
-    private Funciones idFuncion;
+    @Column(name = "id_funcion")
+    private int idFuncion;
 
-    @JoinColumn(name = "id_genero")
-    private GeneroPelicula idGenero;
+    @Column(name = "id_genero")
+    private int idGenero;
 
     //////////////////////////////////////////
     
@@ -52,19 +51,19 @@ public class Pelicula implements Serializable {
         this.nombre = nombre;
     }
 
-    public Funciones getIdFuncion() {
+    public int getIdFuncion() {
         return idFuncion;
     }
 
-    public void setIdFuncion(Funciones idFuncion) {
+    public void setIdFuncion(int idFuncion) {
         this.idFuncion = idFuncion;
     }
 
-    public GeneroPelicula getIdGenero() {
+    public int getIdGenero() {
         return idGenero;
     }
 
-    public void setIdGenero(GeneroPelicula idGenero) {
+    public void setIdGenero(int idGenero) {
         this.idGenero = idGenero;
     }
 
@@ -79,10 +78,5 @@ public class Pelicula implements Serializable {
         sb.append('}');
         return sb.toString();
     }
-
-    
-    
-
-    
 
 }

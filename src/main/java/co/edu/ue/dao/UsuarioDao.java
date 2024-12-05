@@ -11,7 +11,6 @@ import co.edu.ue.jpa.IUsuariosJpa;
 @Repository
 public class UsuarioDao implements IUsuarioDao {
 
-
     @Autowired
     private IUsuariosJpa jpa;
 
@@ -23,7 +22,6 @@ public class UsuarioDao implements IUsuarioDao {
     @Override
     public Usuarios guardarUsuario(Usuarios usuario) {
         return jpa.save(usuario);
-        
     }
 
     @Override

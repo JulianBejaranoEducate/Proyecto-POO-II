@@ -10,11 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "generos")
-@NamedQuery(name = "generos.findAll", query = "SELECT g FROM GenerosPelicula g")
-public class GeneroPelicula implements Serializable{
+@NamedQuery(name = "generos.findAll", query = "SELECT g FROM GeneroPelicula g")
+public class GeneroPelicula implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

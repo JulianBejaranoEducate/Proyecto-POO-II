@@ -1,6 +1,7 @@
 package co.edu.ue.entity;
 
 import java.io.Serializable;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuarios")
-@NamedQuery(name = "usuarios.findAll", query = "SELECT u FROM usuarios u")
+@NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
 public class Usuarios implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -33,8 +34,9 @@ public class Usuarios implements Serializable {
     private int estadoUsuario;
 
     public Usuarios() {
-		super();
-	}
+        super();
+    }
+
     public Usuarios(Integer idUser, String nameUser, String emailUser, int numeroUser, int estadoUsuario) {
         super();
         this.idUser = idUser;
@@ -44,46 +46,44 @@ public class Usuarios implements Serializable {
         this.estadoUsuario = estadoUsuario;
     }
 
+    public Integer getIdUser() {
+        return idUser;
+    }
 
-	public Integer getIdUser() {
-		return idUser;
-	}
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
+    }
 
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
-	}
+    public String getNameUser() {
+        return nameUser;
+    }
 
-	public String getNameUser() {
-		return nameUser;
-	}
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
 
-	public void setNameUser(String nameUser) {
-		this.nameUser = nameUser;
-	}
+    public String getEmailUser() {
+        return emailUser;
+    }
 
-	public String getEmailUser() {
-		return emailUser;
-	}
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
+    }
 
-	public void setEmailUser(String emailUser) {
-		this.emailUser = emailUser;
-	}
+    public int getNumeroUser() {
+        return numeroUser;
+    }
 
-	public int getNumeroUser() {
-		return numeroUser;
-	}
+    public void setNumeroUser(int numeroUser) {
+        this.numeroUser = numeroUser;
+    }
 
-	public void setNumeroUser(int numeroUser) {
-		this.numeroUser = numeroUser;
-	}
+    public int getEstadoUsuario() {
+        return estadoUsuario;
+    }
 
-	public int getEstadoUsuario() {
-		return estadoUsuario;
-	}
-
-	public void setEstadoUsuario(int estadoUsuario) {
-		this.estadoUsuario = estadoUsuario;
-	}
-    
-    
+    public void setEstadoUsuario(int estadoUsuario) {
+        this.estadoUsuario = estadoUsuario;
+    }
 }
+

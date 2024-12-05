@@ -33,7 +33,7 @@ public class SecurityConfig {
                         // Rutas para Usuarios
                         .requestMatchers(HttpMethod.POST, "usuario-sav").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "usuario-all").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "usuario-id\"").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "usuario-id").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "usuario-up").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "usuario-baja").hasRole("ADMIN")
 

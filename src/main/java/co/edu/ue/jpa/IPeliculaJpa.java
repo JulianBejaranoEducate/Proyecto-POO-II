@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.edu.ue.entity.Pelicula;
 
-public interface IPeliculaJpa extends JpaRepository<Pelicula, Integer>{
-
+public interface IPeliculaJpa extends JpaRepository<Pelicula, Integer> {
+    Pelicula findByNombre(String nombre);
 }

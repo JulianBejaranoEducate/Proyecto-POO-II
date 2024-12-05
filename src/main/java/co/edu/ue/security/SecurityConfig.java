@@ -43,6 +43,20 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/funciones/{id}").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/funciones/actualizar/{id}").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/funciones/eliminar/{id}").hasRole("ADMIN")
+
+                        // Rutas para Peliculas
+                        .requestMatchers(HttpMethod.POST, "pelicula-sav").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "pelicula-all").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "pelicula-id").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "pelicula-up").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "pelicula-delete").hasRole("ADMIN")
+
+                        // Rutas para GeneroPelicula
+                        .requestMatchers(HttpMethod.POST, "genero-sav").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "genero-all").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "genero-id").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "genero-up").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "genero-delete").hasRole("ADMIN")
                 )
                 .httpBasic();
         return http.build();

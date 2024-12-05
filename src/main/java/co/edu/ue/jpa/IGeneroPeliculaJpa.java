@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import co.edu.ue.entity.GeneroPelicula;
 
-public interface IGeneroPeliculaJpa extends JpaRepository<GeneroPelicula, Integer>{
-
+public interface IGeneroPeliculaJpa extends JpaRepository<GeneroPelicula, Integer> {
+    GeneroPelicula findByNombre(String nombre);
 }

@@ -1,5 +1,13 @@
 package co.edu.ue.dao;
 
-public interface IPeliculaDao {
+import java.util.List;
 
+import co.edu.ue.entity.Pelicula;
+
+public interface IPeliculaDao {
+    List<Pelicula> listaCompleta();
+    Pelicula guardarPelicula(Pelicula pelicula);
+    Pelicula actualizarPelicula(Pelicula pelicula);
+    Pelicula busquedaPorId(int id);
+    void eliminarPelicula(int id);
 }

@@ -3,9 +3,9 @@ package co.edu.ue.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.HttpBasicConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -28,8 +28,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        HttpBasicConfigurer<HttpSecurity> httpBasic = http.csrf(cus -> cus.disable())
-                .authorizeHttpRequests(aut -> aut
+        http.csrf(cus -> cus.disable())
+        				// Rutas para Boletas
+                .authorizeHttpRequests(aut -> aut.requestMatchers(HttpMethod.POST, "boletas-add").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "boletas-all").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "boletas-update").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "boletas-id").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "boletas-delete").hasRole("ADMIN")
+                		
                         // Rutas para Usuarios
                         .requestMatchers(HttpMethod.POST, "usuario-sav").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "usuario-all").hasRole("ADMIN")
@@ -57,8 +63,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "genero-id").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "genero-up").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "genero-delete").hasRole("ADMIN")
-                )
-                .httpBasic();
+                ).httpBasic(Customizer.withDefaults());
         return http.build();
     }
 }

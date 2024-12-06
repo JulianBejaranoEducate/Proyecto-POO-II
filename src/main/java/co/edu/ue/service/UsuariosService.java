@@ -41,15 +41,11 @@ public class UsuariosService implements IUsuarioService {
     public Usuarios buscarPorEmail(String email) {
         return usuariosDao.busquedaPorEmail(email);
     }
+
     @Override
     @Transactional
-    public void darDeBaja(int id) {
-        Usuarios usuario = usuariosDao.busquedaPorId(id);
-        if (usuario != null) {
-            usuario.setEstadoUsuario(0); 
-            usuariosDao.actualizarUsuario(usuario);
-        }
+    public void eliminar(int id) {
+        usuariosDao.eliminarUsuario(id);
+    }
 }
-}
-
 

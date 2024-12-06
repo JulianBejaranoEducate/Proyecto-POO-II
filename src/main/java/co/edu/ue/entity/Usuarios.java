@@ -19,7 +19,7 @@ public class Usuarios implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
-    private Integer idUser;
+    private int idUser;
 
     @Column(name = "nombrecompleto")
     private String nameUser;
@@ -28,16 +28,16 @@ public class Usuarios implements Serializable {
     private String emailUser;
 
     @Column(name = "numero_telefono")
-    private int numeroUser;
+    private String numeroUser;
 
     @Column(name = "estadousuario")
-    private int estadoUsuario;
+    private byte estadoUsuario;
 
     public Usuarios() {
         super();
     }
 
-    public Usuarios(Integer idUser, String nameUser, String emailUser, int numeroUser, int estadoUsuario) {
+    public Usuarios(int idUser, String nameUser, String emailUser, String numeroUser, byte estadoUsuario) {
         super();
         this.idUser = idUser;
         this.nameUser = nameUser;
@@ -46,11 +46,11 @@ public class Usuarios implements Serializable {
         this.estadoUsuario = estadoUsuario;
     }
 
-    public Integer getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Integer idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 
@@ -70,20 +70,25 @@ public class Usuarios implements Serializable {
         this.emailUser = emailUser;
     }
 
-    public int getNumeroUser() {
+    public String getNumeroUser() {
         return numeroUser;
     }
 
-    public void setNumeroUser(int numeroUser) {
+    public void setNumeroUser(String numeroUser) {
         this.numeroUser = numeroUser;
     }
 
-    public int getEstadoUsuario() {
+    public byte getEstadoUsuario() {
         return estadoUsuario;
     }
 
-    public void setEstadoUsuario(int estadoUsuario) {
+    public void setEstadoUsuario(byte estadoUsuario) {
         this.estadoUsuario = estadoUsuario;
     }
-}
 
+    @Override
+    public String toString() {
+        return "Usuarios [idUser=" + idUser + ", nameUser=" + nameUser + ", emailUser=" + emailUser + ", numeroUser="
+                + numeroUser + ", estadoUsuario=" + estadoUsuario + "]";
+    }
+}

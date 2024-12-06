@@ -3,32 +3,40 @@ package co.edu.ue.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import co.edu.ue.entity.Factura;
 import co.edu.ue.jpa.IFacturaJpa;
-
+@Repository
 public class FacturaDao implements IFacturaDao{
 	
 	@Autowired
 	IFacturaJpa jpa;
 
 	@Override
-	public List<Factura> guardarFactura(Factura factura) {
-		return null;
+	public List<Factura> listaCompleta() {
+		return jpa.findAll();
+	}
+
+	@Override
+	public Factura guardarFactura(Factura factura) {
+		return jpa.save(factura);
 	}
 
 	@Override
 	public Factura actualizarFactura(Factura factura) {
-		return null;
+		return jpa.save(factura);
 	}
 
 	@Override
-	public List<Factura> listaCompleta() {
-		return null;
+	public Factura encontrarFacturaId(int id) {
+		return jpa.findById(id).orElse(null);
 	}
 
 	@Override
-	public Factura busquedaPorId(int id) {
-		return null;
+	public void eliminarFacturaId(int id) {
+		jpa.deleteById(id);
+		
 	}
+
 }

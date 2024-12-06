@@ -37,11 +37,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "boletas-delete").hasRole("ADMIN")
                 		
                         // Rutas para Usuarios
-                        .requestMatchers(HttpMethod.POST, "usuario-sav").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "usuario-all").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "usuario-id\"").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "usuario-up").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "usuario-baja").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/usuarios/{id}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/usuarios/{id}").hasRole("ADMIN")
 
                         // Rutas para Funciones
                         .requestMatchers(HttpMethod.POST, "/funciones/crear").hasRole("ADMIN")

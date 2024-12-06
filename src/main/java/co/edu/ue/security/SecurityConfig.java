@@ -1,5 +1,7 @@
 package co.edu.ue.security;
 
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,8 +12,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.List;
 
 @EnableWebSecurity
 @Configuration
@@ -63,6 +63,13 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "genero-id").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.PUT, "genero-up").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "genero-delete").hasRole("ADMIN")
+                        
+                        // Rutas para TipoBoleta
+                        .requestMatchers(HttpMethod.POST, "tipoBoleta-add").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "tipoBoleta-all").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "tipoBoleta-id").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "tipoBoleta-update").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "tipoBoleta-delete").hasRole("ADMIN")
                 ).httpBasic(Customizer.withDefaults());
         return http.build();
     }

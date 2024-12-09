@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.ue.entity.Funciones;
@@ -47,7 +46,7 @@ public class FuncionesController {
     }
 
     @GetMapping(value = "/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Funciones> getIdFuncion(@RequestParam("id") int id) {
+    public ResponseEntity<Funciones> getIdFuncion(@PathVariable int id) {
         Funciones funcion = funcionesService.buscarPorId(id);
         if (funcion != null) {
             return new ResponseEntity<>(funcion, HttpStatus.FOUND);

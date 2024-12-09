@@ -10,5 +10,5 @@ public interface IUsuarioDao {
     Usuarios actualizarUsuario(Usuarios usuario); 
     Usuarios busquedaPorId(int id); 
     Usuarios busquedaPorEmail(String email); 
-    void eliminarUsuario(int id); 
+    void darDeBajaUsuario(int id);
 }

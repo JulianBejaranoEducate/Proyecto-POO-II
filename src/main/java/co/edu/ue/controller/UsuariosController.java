@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.ue.entity.Usuarios;
 import co.edu.ue.service.IUsuarioService;
+import co.edu.ue.service.UsuariosService;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -25,6 +26,8 @@ public class UsuariosController {
 
     @Autowired
     private IUsuarioService usuariosService;
+    @Autowired
+    private UsuariosService userService;
 
     @PostMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuarios> postUsuario(@RequestBody Usuarios usuario) {
@@ -66,9 +69,9 @@ public class UsuariosController {
         }
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteUsuario(@PathVariable("id") int id) {
-        usuariosService.eliminar(id);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> darDeBajaUsuario(@PathVariable int id) {
+        userService.darDeBaja(id);
+        return ResponseEntity.ok("Usuario dado de baja con éxito");
     }
 }

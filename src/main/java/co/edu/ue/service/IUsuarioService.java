@@ -10,5 +10,5 @@ public interface IUsuarioService {
     Usuarios actualizar(Usuarios usuario); 
     Usuarios buscarPorId(int id); 
     Usuarios buscarPorEmail(String email);
-    void eliminar(int id); 
+    void darDeBaja(int id);
 }

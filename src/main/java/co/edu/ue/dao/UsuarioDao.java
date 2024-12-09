@@ -40,7 +40,11 @@ public class UsuarioDao implements IUsuarioDao {
     }
 
     @Override
-    public void eliminarUsuario(int id) {
-        jpa.deleteById(id); 
+    public void darDeBajaUsuario(int id) {
+        Usuarios usuario = jpa.findById(id).orElse(null);
+        if (usuario != null) {
+            usuario.setEstadoUsuario((byte) 0); 
+            jpa.save(usuario); 
+        }
     }
 }

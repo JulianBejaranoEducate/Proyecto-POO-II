@@ -40,17 +40,17 @@ public class FacturaController {
         return new ResponseEntity<>(facturaList, headers, HttpStatus.OK);
     }
 
-    @PutMapping(value = "boletas-update")
+    @PutMapping(value = "factura-update")
     public ResponseEntity<Factura> putBoleta(@RequestBody Factura factura) {
         return new ResponseEntity<Factura>(facturaService.updateFactura(factura), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping(value = "boletas-id")
+    @GetMapping(value = "factura-id")
     public ResponseEntity<Factura> getFacturaById(@RequestParam("id") int id) {
         return new ResponseEntity<Factura>(facturaService.findFacturaById(id), HttpStatus.FOUND);
     }
 
-    @DeleteMapping(value = "boletas-delete")
+    @DeleteMapping(value = "factura-delete")
     public ResponseEntity<Void> deleteFacturaById(@RequestParam("id") int id) {
     	facturaService.deleteFacturaById(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);

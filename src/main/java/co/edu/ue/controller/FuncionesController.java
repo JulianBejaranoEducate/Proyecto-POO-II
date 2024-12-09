@@ -46,7 +46,7 @@ public class FuncionesController {
     }
 
     @GetMapping(value = "/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Funciones> getIdFuncion(@PathVariable int id) {
+    public ResponseEntity<Funciones> getIdFuncion(@PathVariable("id") int id) {
         Funciones funcion = funcionesService.buscarPorId(id);
         if (funcion != null) {
             return new ResponseEntity<>(funcion, HttpStatus.FOUND);

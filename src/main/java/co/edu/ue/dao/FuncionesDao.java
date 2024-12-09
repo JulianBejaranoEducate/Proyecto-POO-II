@@ -35,7 +35,11 @@ public class FuncionesDao implements IFuncionesDao {
     }
 
     @Override
-    public void eliminarFuncion(int id) {
-        jpa.deleteById(id);
+    public void darDeBajaFuncion(int id) {
+        Funciones funcion = jpa.findById(id).orElse(null);
+        if (funcion != null) {
+            funcion.setEstadoFuncion((byte) 0); 
+            jpa.save(funcion); 
+        }
     }
 }

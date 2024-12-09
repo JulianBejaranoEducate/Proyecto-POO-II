@@ -44,11 +44,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/usuarios/{id}").hasRole("ADMIN")
 
                         // Rutas para Funciones
-                        .requestMatchers(HttpMethod.POST, "/funciones/crear").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/funciones/todas").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/funciones").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/funciones").hasAnyRole("USER", "ADMIN")
                         .requestMatchers(HttpMethod.GET, "/funciones/{id}").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/funciones/actualizar/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/funciones/eliminar/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/funciones").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/funciones/{id}").hasRole("ADMIN")
 
                         // Rutas para Peliculas
                         .requestMatchers(HttpMethod.POST, "pelicula-sav").hasRole("ADMIN")

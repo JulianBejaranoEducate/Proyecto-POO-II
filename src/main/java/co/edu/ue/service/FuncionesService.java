@@ -38,12 +38,8 @@ public class FuncionesService implements IFuncionesService {
     }
 
     @Override
-    @Transactional
-    public void darDeBaja(int id) {
-        Funciones funcion = funcionesDao.busquedaPorId(id);
-        if (funcion != null) {
-            funcion.setEstadoFuncion(0); 
-            funcionesDao.actualizarFuncion(funcion);
-        }
+        @Transactional
+        public void darDeBaja(int id) {
+        funcionesDao.darDeBajaFuncion(id);
     }
 }

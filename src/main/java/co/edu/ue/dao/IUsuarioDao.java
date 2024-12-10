@@ -11,4 +11,5 @@ public interface IUsuarioDao {
     Usuarios busquedaPorId(int id); 
     Usuarios busquedaPorEmail(String email); 
     void darDeBajaUsuario(int id);
+    boolean emailExists(String email);
 }

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.ue.entity.Usuarios;
@@ -28,6 +27,12 @@ public class UsuariosController {
 
     @PostMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuarios> postUsuario(@RequestBody Usuarios usuario) {
+        if (usuariosService.emailExists(usuario.getEmailUser())) {
+            return new ResponseEntity("El correo electrónico ya está en uso", HttpStatus.CONFLICT);
+        }
+        if (usuario.getEstadoUsuario() == null) {
+            usuario.setEstadoUsuario((byte) 1);  // Asigna un valor por defecto si es null
+        }
         Usuarios savedUsuario = usuariosService.guardar(usuario);
         return new ResponseEntity<>(savedUsuario, HttpStatus.CREATED);
     }
@@ -42,6 +47,9 @@ public class UsuariosController {
 
     @PutMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuarios> putUsuario(@RequestBody Usuarios usuario) {
+        if (usuario.getEstadoUsuario() == null) {
+            usuario.setEstadoUsuario((byte) 1);  // Asigna un valor por defecto si es null
+        }
         Usuarios updatedUsuario = usuariosService.actualizar(usuario);
         return new ResponseEntity<>(updatedUsuario, HttpStatus.ACCEPTED);
     }
@@ -49,16 +57,6 @@ public class UsuariosController {
     @GetMapping(value = "/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Usuarios> getIdUsuario(@PathVariable("id") int id) {
         Usuarios usuario = usuariosService.buscarPorId(id);
-        if (usuario != null) {
-            return new ResponseEntity<>(usuario, HttpStatus.FOUND);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @GetMapping(value = "/email", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Usuarios> getByEmail(@RequestParam("email") String email) {
-        Usuarios usuario = usuariosService.buscarPorEmail(email);
         if (usuario != null) {
             return new ResponseEntity<>(usuario, HttpStatus.FOUND);
         } else {

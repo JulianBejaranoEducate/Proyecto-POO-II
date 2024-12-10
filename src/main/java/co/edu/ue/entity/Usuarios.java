@@ -31,14 +31,13 @@ public class Usuarios implements Serializable {
     private String numeroUser;
 
     @Column(name = "estadousuario")
-    private byte estadoUsuario;
+    private Byte estadoUsuario; 
 
     public Usuarios() {
-        super();
+       
     }
 
-    public Usuarios(int idUser, String nameUser, String emailUser, String numeroUser, byte estadoUsuario) {
-        super();
+    public Usuarios(int idUser, String nameUser, String emailUser, String numeroUser, Byte estadoUsuario) {
         this.idUser = idUser;
         this.nameUser = nameUser;
         this.emailUser = emailUser;
@@ -78,11 +77,11 @@ public class Usuarios implements Serializable {
         this.numeroUser = numeroUser;
     }
 
-    public byte getEstadoUsuario() {
+    public Byte getEstadoUsuario() {
         return estadoUsuario;
     }
 
-    public void setEstadoUsuario(byte estadoUsuario) {
+    public void setEstadoUsuario(Byte estadoUsuario) {
         this.estadoUsuario = estadoUsuario;
     }
 

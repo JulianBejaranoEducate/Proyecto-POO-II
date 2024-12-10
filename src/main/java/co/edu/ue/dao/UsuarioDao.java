@@ -16,7 +16,7 @@ public class UsuarioDao implements IUsuarioDao {
 
     @Override
     public List<Usuarios> listaCompleta() {
-        return jpa.findAll(); 
+        return jpa.findByEstadoUsuario((byte) 1); // Solo usuarios activos
     }
 
     @Override
@@ -35,16 +35,21 @@ public class UsuarioDao implements IUsuarioDao {
     }
 
     @Override
-    public Usuarios busquedaPorEmail(String emailUser) {
-        return jpa.findByEmailUser(emailUser); 
+    public Usuarios busquedaPorEmail(String email) {
+        return jpa.findByEmailUser(email).orElse(null);
     }
 
     @Override
     public void darDeBajaUsuario(int id) {
         Usuarios usuario = jpa.findById(id).orElse(null);
         if (usuario != null) {
-            usuario.setEstadoUsuario((byte) 0); 
-            jpa.save(usuario); 
+            usuario.setEstadoUsuario((byte) 0); // Cambia el estado a inactivo
+            jpa.save(usuario);
         }
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return jpa.findByEmailUser(email).isPresent();
     }
 }

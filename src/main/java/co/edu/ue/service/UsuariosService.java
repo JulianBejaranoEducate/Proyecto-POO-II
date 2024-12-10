@@ -1,51 +1,51 @@
-    package co.edu.ue.service;
+package co.edu.ue.service;
 
-    import java.util.List;
+import java.util.List;
 
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.stereotype.Service;
-    import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-    import co.edu.ue.dao.IUsuarioDao;
-    import co.edu.ue.entity.Usuarios;
+import co.edu.ue.dao.UsuarioDao;
+import co.edu.ue.entity.Usuarios;
 
-    @Service
-    public class UsuariosService implements IUsuarioService {
+@Service
+public class UsuariosService implements IUsuarioService {
 
-        @Autowired
-        private IUsuarioDao usuariosDao;
+    @Autowired
+    private UsuarioDao usuarioDao;
 
-        @Override
-        public List<Usuarios> obtenerTodos() {
-            return usuariosDao.listaCompleta();
-        }
-
-        @Override
-        @Transactional
-        public Usuarios guardar(Usuarios usuario) {
-            return usuariosDao.guardarUsuario(usuario);
-        }
-
-        @Override
-        @Transactional
-        public Usuarios actualizar(Usuarios usuario) {
-            return usuariosDao.actualizarUsuario(usuario);
-        }
-
-        @Override
-        public Usuarios buscarPorId(int id) {
-            return usuariosDao.busquedaPorId(id);
-        }
-
-        @Override
-        public Usuarios buscarPorEmail(String email) {
-            return usuariosDao.busquedaPorEmail(email);
-        }
-
-       @Override
-        @Transactional
-        public void darDeBaja(int id) {
-        usuariosDao.darDeBajaUsuario(id);
-    }
+    @Override
+    public Usuarios guardar(Usuarios usuario) {
+        return usuarioDao.guardarUsuario(usuario);
     }
 
+    @Override
+    public List<Usuarios> obtenerTodos() {
+        return usuarioDao.listaCompleta(); // Solo usuarios activos
+    }
+
+    @Override
+    public Usuarios buscarPorId(int id) {
+        return usuarioDao.busquedaPorId(id);
+    }
+
+    @Override
+    public Usuarios buscarPorEmail(String email) {
+        return usuarioDao.busquedaPorEmail(email);
+    }
+
+    @Override
+    public void darDeBaja(int id) {
+        usuarioDao.darDeBajaUsuario(id);
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return usuarioDao.emailExists(email);
+    }
+
+    @Override
+    public Usuarios actualizar(Usuarios usuario) {
+        return usuarioDao.actualizarUsuario(usuario); // Implementa el método actualizar
+    }
+}

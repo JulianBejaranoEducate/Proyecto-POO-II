@@ -27,6 +27,9 @@ public class FuncionesController {
 
     @PostMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Funciones> postFuncion(@RequestBody Funciones funcion) {
+        if (funcion.getEstadoFuncion() == null) {
+            funcion.setEstadoFuncion(1); 
+        }
         Funciones savedFuncion = funcionesService.guardar(funcion);
         return new ResponseEntity<>(savedFuncion, HttpStatus.CREATED);
     }

@@ -3,6 +3,7 @@ package co.edu.ue.entity;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,14 +33,13 @@ public class Funciones implements Serializable {
     private String salaFuncion;
 
     @Column(name = "estado")
-    private int estadoFuncion;
+    private Integer estadoFuncion; // Cambiado de int a Integer
 
     public Funciones() {
-        super();
+        // Constructor por defecto
     }
 
-    public Funciones(Integer idFuncion, Date fechaFuncion, Time horaFuncion, String salaFuncion, int estadoFuncion) {
-        super();
+    public Funciones(Integer idFuncion, Date fechaFuncion, Time horaFuncion, String salaFuncion, Integer estadoFuncion) {
         this.idFuncion = idFuncion;
         this.fechaFuncion = fechaFuncion;
         this.horaFuncion = horaFuncion;
@@ -79,11 +79,11 @@ public class Funciones implements Serializable {
         this.salaFuncion = salaFuncion;
     }
 
-    public int getEstadoFuncion() {
+    public Integer getEstadoFuncion() {
         return estadoFuncion;
     }
 
-    public void setEstadoFuncion(int estadoFuncion) {
+    public void setEstadoFuncion(Integer estadoFuncion) {
         this.estadoFuncion = estadoFuncion;
     }
 
@@ -93,4 +93,3 @@ public class Funciones implements Serializable {
                 + ", salaFuncion=" + salaFuncion + ", estadoFuncion=" + estadoFuncion + "]";
     }
 }
-

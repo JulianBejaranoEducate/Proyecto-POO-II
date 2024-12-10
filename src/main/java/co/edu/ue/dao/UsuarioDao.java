@@ -16,7 +16,7 @@ public class UsuarioDao implements IUsuarioDao {
 
     @Override
     public List<Usuarios> listaCompleta() {
-        return jpa.findByEstadoUsuario((byte) 1); // Solo usuarios activos
+        return jpa.findByEstadoUsuario((byte) 1); 
     }
 
     @Override

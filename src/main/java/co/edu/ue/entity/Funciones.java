@@ -33,13 +33,12 @@ public class Funciones implements Serializable {
     private String salaFuncion;
 
     @Column(name = "estado")
-    private Integer estadoFuncion; // Cambiado de int a Integer
+    private Byte estadoFuncion; 
 
     public Funciones() {
-        // Constructor por defecto
     }
 
-    public Funciones(Integer idFuncion, Date fechaFuncion, Time horaFuncion, String salaFuncion, Integer estadoFuncion) {
+    public Funciones(Integer idFuncion, Date fechaFuncion, Time horaFuncion, String salaFuncion, Byte estadoFuncion) {
         this.idFuncion = idFuncion;
         this.fechaFuncion = fechaFuncion;
         this.horaFuncion = horaFuncion;
@@ -79,11 +78,11 @@ public class Funciones implements Serializable {
         this.salaFuncion = salaFuncion;
     }
 
-    public Integer getEstadoFuncion() {
+    public Byte getEstadoFuncion() {
         return estadoFuncion;
     }
 
-    public void setEstadoFuncion(Integer estadoFuncion) {
+    public void setEstadoFuncion(Byte estadoFuncion) {
         this.estadoFuncion = estadoFuncion;
     }
 

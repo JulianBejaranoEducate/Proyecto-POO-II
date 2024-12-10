@@ -17,7 +17,7 @@ public class FuncionesService implements IFuncionesService {
 
     @Override
     public List<Funciones> obtenerTodas() {
-        return funcionesDao.listaCompleta();
+        return funcionesDao.listaCompleta(); // Solo funciones activas
     }
 
     @Override
@@ -38,8 +38,8 @@ public class FuncionesService implements IFuncionesService {
     }
 
     @Override
-        @Transactional
-        public void darDeBaja(int id) {
+    @Transactional
+    public void darDeBaja(int id) {
         funcionesDao.darDeBajaFuncion(id);
     }
 }

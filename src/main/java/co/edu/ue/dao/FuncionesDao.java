@@ -16,7 +16,7 @@ public class FuncionesDao implements IFuncionesDao {
 
     @Override
     public List<Funciones> listaCompleta() {
-        return jpa.findAll();
+        return jpa.findByEstadoFuncion((byte) 1); // Solo funciones activas
     }
 
     @Override
@@ -38,8 +38,8 @@ public class FuncionesDao implements IFuncionesDao {
     public void darDeBajaFuncion(int id) {
         Funciones funcion = jpa.findById(id).orElse(null);
         if (funcion != null) {
-            funcion.setEstadoFuncion((Integer) 0); 
-            jpa.save(funcion); 
+            funcion.setEstadoFuncion((byte) 0); // Cambia el estado a inactivo
+            jpa.save(funcion);
         }
     }
 }

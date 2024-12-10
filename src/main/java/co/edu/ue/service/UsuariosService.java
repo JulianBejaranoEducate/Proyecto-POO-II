@@ -21,7 +21,7 @@ public class UsuariosService implements IUsuarioService {
 
     @Override
     public List<Usuarios> obtenerTodos() {
-        return usuarioDao.listaCompleta(); // Solo usuarios activos
+        return usuarioDao.listaCompleta();
     }
 
     @Override
@@ -46,6 +46,6 @@ public class UsuariosService implements IUsuarioService {
 
     @Override
     public Usuarios actualizar(Usuarios usuario) {
-        return usuarioDao.actualizarUsuario(usuario); // Implementa el método actualizar
+        return usuarioDao.actualizarUsuario(usuario); 
     }
 }

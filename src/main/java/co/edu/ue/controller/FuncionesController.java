@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.ue.entity.Funciones;
-import co.edu.ue.service.FuncionesService;
+import co.edu.ue.service.IFuncionesService;
 
 @RestController
 @RequestMapping("/funciones")
 public class FuncionesController {
 
     @Autowired
-    private FuncionesService funcionesService;
+    private IFuncionesService funcionesService;
 
     @PostMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Funciones> postFuncion(@RequestBody Funciones funcion) {
         if (funcion.getEstadoFuncion() == null) {
-            funcion.setEstadoFuncion(1); 
+            funcion.setEstadoFuncion((byte)1); 
         }
         Funciones savedFuncion = funcionesService.guardar(funcion);
         return new ResponseEntity<>(savedFuncion, HttpStatus.CREATED);
@@ -44,6 +44,9 @@ public class FuncionesController {
 
     @PutMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Funciones> putFuncion(@RequestBody Funciones funcion) {
+        if (funcion.getEstadoFuncion() == null) {
+            funcion.setEstadoFuncion((byte) 1); 
+        }
         Funciones updatedFuncion = funcionesService.actualizar(funcion);
         return new ResponseEntity<>(updatedFuncion, HttpStatus.ACCEPTED);
     }

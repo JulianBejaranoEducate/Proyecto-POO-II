@@ -38,7 +38,7 @@ public class FuncionesDao implements IFuncionesDao {
     public void darDeBajaFuncion(int id) {
         Funciones funcion = jpa.findById(id).orElse(null);
         if (funcion != null) {
-            funcion.setEstadoFuncion((byte) 0); 
+            funcion.setEstadoFuncion((Integer) 0); 
             jpa.save(funcion); 
         }
     }

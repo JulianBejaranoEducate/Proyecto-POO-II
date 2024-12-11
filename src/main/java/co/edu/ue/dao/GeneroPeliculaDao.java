@@ -35,7 +35,11 @@ public class GeneroPeliculaDao implements IGeneroPeliculaDao {
     }
 
     @Override
-    public void eliminarGenero(int id) {
-        jpa.deleteById(id);
+    public void darDeBaja(int id) {
+        GeneroPelicula genero = jpa.findById(id).orElse(null);
+        if (genero != null) {
+            genero.setEstadoGenero((byte) 0); 
+            jpa.save(genero);
+        }
     }
 }

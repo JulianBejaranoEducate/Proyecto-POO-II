@@ -9,5 +9,5 @@ public interface IPeliculaService {
     Pelicula guardar(Pelicula pelicula);
     Pelicula actualizar(Pelicula pelicula);
     Pelicula buscarPorId(int id);
-    void eliminar(int id);
+    void darDeBaja(int id);
 }

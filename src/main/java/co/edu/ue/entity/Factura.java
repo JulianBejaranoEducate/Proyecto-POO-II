@@ -1,136 +1,80 @@
 package co.edu.ue.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "Factura")
-@NamedQuery(name = "factura.findAll", query = "SELECT f FROM Factura f")
-public class Factura implements Serializable{
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_factura")
-	private int id_factura;
+@Table(name = "factura")
+public class Factura implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-	@Column(name = "fecha_factura")
-	private Date fecha_factura;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_factura")
+    private int id_factura;
 
-	@Column(name = "id_usuario")
-	private int id_usario;
+    @Column(name = "precio_unitario")
+    private float precio_unitario;
 
-	@Column(name = "metodo_pago")
-	private String metodo_pago;
+    @Column(name = "cantidad")
+    private int cantidad;
 
-	@Column(name = "id_boleta")
-	private int id_boleta;
+    @Transient
+    private float total;
 
-	@Column(name = "precio_unitario")
-	private float precio_unitario;	
+    @Column(name = "estadoFactura")
+    private Byte estadoFactura;
 
-	@Column(name = "cantidad")
-	private int cantidad;
+    // Getters y setters
 
-	@Column(name = "total")
-	private float total;
+    public Factura() {
+        super();
+    }
 
-	public Factura() {
-		super();
-	}
+    public int getId_factura() {
+        return id_factura;
+    }
 
-	public int getId_factura() {
-		return id_factura;
-	}
+    public void setId_factura(int id_factura) {
+        this.id_factura = id_factura;
+    }
 
-	public void setId_factura(int id_factura) {
-		this.id_factura = id_factura;
-	}
+    public float getPrecio_unitario() {
+        return precio_unitario;
+    }
 
-	public Date getFecha_factura() {
-		return fecha_factura;
-	}
+    public void setPrecio_unitario(float precio_unitario) {
+        this.precio_unitario = precio_unitario;
+    }
 
-	public void setFecha_factura(Date fecha_factura) {
-		this.fecha_factura = fecha_factura;
-	}
+    public int getCantidad() {
+        return cantidad;
+    }
 
-	public int getId_usario() {
-		return id_usario;
-	}
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
-	public void setId_usario(int id_usario) {
-		this.id_usario = id_usario;
-	}
+    public float getTotal() {
+        return total;
+    }
 
-	public String getMetodo_pago() {
-		return metodo_pago;
-	}
+    public void setTotal(float total) {
+        this.total = total;
+    }
 
-	public void setMetodo_pago(String metodo_pago) {
-		this.metodo_pago = metodo_pago;
-	}
+    public Byte getEstadoFactura() {
+        return estadoFactura;
+    }
 
-	public int getId_boleta() {
-		return id_boleta;
-	}
-
-	public void setId_boleta(int id_boleta) {
-		this.id_boleta = id_boleta;
-	}
-
-	public float getPrecio_unitario() {
-		return precio_unitario;
-	}
-
-	public void setPrecio_unitario(float precio_unitario) {
-		this.precio_unitario = precio_unitario;
-	}
-
-	public int getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(int cantidad) {
-		this.cantidad = cantidad;
-	}
-
-	public float getTotal() {
-		return total;
-	}
-
-	public void setTotal(float total) {
-		this.total = total;
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Factura [id_factura=");
-		builder.append(id_factura);
-		builder.append(", fecha_factura=");
-		builder.append(fecha_factura);
-		builder.append(", id_usario=");
-		builder.append(id_usario);
-		builder.append(", metodo_pago=");
-		builder.append(metodo_pago);
-		builder.append(", id_boleta=");
-		builder.append(id_boleta);
-		builder.append(", precio_unitario=");
-		builder.append(precio_unitario);
-		builder.append(", cantidad=");
-		builder.append(cantidad);
-		builder.append(", total=");
-		builder.append(total);
-		builder.append("]");
-		return builder.toString();
-	}
+    public void setEstadoFactura(Byte estadoFactura) {
+        this.estadoFactura = estadoFactura;
+    }
 }

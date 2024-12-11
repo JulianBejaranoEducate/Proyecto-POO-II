@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,9 +54,15 @@ public class PeliculaController {
         }
     }
 
-    @DeleteMapping(value = "pelicula-delete")
-    public ResponseEntity<Void> deletePelicula(@RequestParam("id") int id) {
-        peliculaService.eliminar(id);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    @DeleteMapping("pelicula/{id}")
+    public ResponseEntity<String> darDeBajaPelicula(@PathVariable int id) {
+    try{
+        peliculaService.darDeBaja(id);
+        return ResponseEntity.ok("Pelicula dada de baja con éxito");
+    } catch (IllegalArgumentException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    } catch (IllegalStateException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+}
 }

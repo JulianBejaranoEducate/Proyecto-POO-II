@@ -9,7 +9,5 @@ public interface IGeneroPeliculaService {
     GeneroPelicula guardar(GeneroPelicula genero);
     GeneroPelicula actualizar(GeneroPelicula genero);
     GeneroPelicula buscarPorId(int id);
-    void eliminar(int id);
+    void darDeBaja(int id);
 }
-
-

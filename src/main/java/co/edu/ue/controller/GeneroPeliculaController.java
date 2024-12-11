@@ -8,34 +8,34 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.ue.entity.GeneroPelicula;
 import co.edu.ue.service.IGeneroPeliculaService;
 
 @RestController
+@RequestMapping("/Generopelicula")
 public class GeneroPeliculaController {
 
     @Autowired
     private IGeneroPeliculaService generoPeliculaService;
 
-    /**
-     * Crear un nuevo género
-     */
-    @PostMapping(value = "genero-sav", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+
+    @PostMapping(produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GeneroPelicula> postGenero(@RequestBody GeneroPelicula genero) {
+        if (genero.getEstadoGenero() == null) {
+            genero.setEstadoGenero((byte)1); 
+        }
         GeneroPelicula savedGenero = generoPeliculaService.guardar(genero);
         return new ResponseEntity<>(savedGenero, HttpStatus.CREATED);
     }
 
-    /**
-     * Obtener todos los géneros
-     */
-    @GetMapping(value = "genero-all", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<GeneroPelicula>> getAllGeneros() {
         List<GeneroPelicula> generosList = generoPeliculaService.obtenerTodos();
         HttpHeaders headers = new HttpHeaders();
@@ -43,20 +43,17 @@ public class GeneroPeliculaController {
         return new ResponseEntity<>(generosList, headers, HttpStatus.OK);
     }
 
-    /**
-     * Actualizar un género
-     */
-    @PutMapping(value = "genero-up")
+    @PutMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GeneroPelicula> putGenero(@RequestBody GeneroPelicula genero) {
+        if (genero.getEstadoGenero() == null) {
+            genero.setEstadoGenero((byte) 1); 
+        }
         GeneroPelicula updatedGenero = generoPeliculaService.actualizar(genero);
         return new ResponseEntity<>(updatedGenero, HttpStatus.ACCEPTED);
     }
 
-    /**
-     * Buscar un género por ID
-     */
-    @GetMapping(value = "genero-id")
-    public ResponseEntity<GeneroPelicula> getIdGenero(@RequestParam("id") int id) {
+    @GetMapping(value = "/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GeneroPelicula> getIdGenero(@PathVariable("id") int id) {
         GeneroPelicula genero = generoPeliculaService.buscarPorId(id);
         if (genero != null) {
             return new ResponseEntity<>(genero, HttpStatus.FOUND);
@@ -65,12 +62,15 @@ public class GeneroPeliculaController {
         }
     }
 
-    /**
-     * Eliminar un género por ID
-     */
-    @DeleteMapping(value = "genero-delete")
-    public ResponseEntity<Void> deleteGenero(@RequestParam("id") int id) {
-        generoPeliculaService.eliminar(id);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> darDeBajaUsuario(@PathVariable int id) {
+    try{
+        generoPeliculaService.darDeBaja(id);
+        return ResponseEntity.ok("Usuario dado de baja con éxito");
+    } catch (IllegalArgumentException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    } catch (IllegalStateException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
+}
 }

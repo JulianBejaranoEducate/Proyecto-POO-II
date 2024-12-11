@@ -28,7 +28,7 @@ public class FuncionesController {
     @PostMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Funciones> postFuncion(@RequestBody Funciones funcion) {
         if (funcion.getEstadoFuncion() == null) {
-            funcion.setEstadoFuncion((byte)1); 
+            funcion.setEstadoFuncion((byte) 1);
         }
         Funciones savedFuncion = funcionesService.guardar(funcion);
         return new ResponseEntity<>(savedFuncion, HttpStatus.CREATED);
@@ -45,7 +45,7 @@ public class FuncionesController {
     @PutMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Funciones> putFuncion(@RequestBody Funciones funcion) {
         if (funcion.getEstadoFuncion() == null) {
-            funcion.setEstadoFuncion((byte) 1); 
+            funcion.setEstadoFuncion((byte) 1);
         }
         Funciones updatedFuncion = funcionesService.actualizar(funcion);
         return new ResponseEntity<>(updatedFuncion, HttpStatus.ACCEPTED);
@@ -63,7 +63,13 @@ public class FuncionesController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> darDeBajaUsuario(@PathVariable int id) {
-        funcionesService.darDeBaja(id);
-        return new ResponseEntity<>("Funcion dada de baja correctamente", HttpStatus.OK);
+        try {
+            funcionesService.darDeBaja(id);
+            return new ResponseEntity<>("Funcion dada de baja correctamente", HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

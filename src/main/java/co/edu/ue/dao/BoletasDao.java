@@ -10,12 +10,13 @@ import co.edu.ue.jpa.IBoletasJpa;
 
 @Repository
 public class BoletasDao implements IBoletasDao {
+
     @Autowired
-    IBoletasJpa jpa;
+    private IBoletasJpa jpa;
 
     @Override
     public List<Boletas> listaCompleta() {
-        return jpa.findAll();
+        return jpa.findByEstadoBoleta((byte) 1); // Solo boletas activas
     }
 
     @Override
@@ -35,6 +36,15 @@ public class BoletasDao implements IBoletasDao {
 
     @Override
     public void eliminarBoletaId(int id) {
-        jpa.deleteById(id);
+        Boletas boleta = jpa.findById(id).orElse(null);
+        if (boleta != null) {
+            boleta.setEstadoBoleta((byte) 0); 
+            jpa.save(boleta);
+        }
+    }
+
+    @Override
+    public boolean boletaExists(int id) {
+        return jpa.existsById(id);
     }
 }

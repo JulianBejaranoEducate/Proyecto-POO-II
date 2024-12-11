@@ -2,7 +2,13 @@ package co.edu.ue.entity;
 
 import java.io.Serializable;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "boletas")
@@ -23,6 +29,9 @@ public class Boletas implements Serializable {
     
     @Column(name = "id_pelicula")
     private int pelicula;
+	
+	@Column(name = "estadoBoleta")
+	private Byte estadoBoleta;
 
     public Boletas() {
     	super();
@@ -60,18 +69,18 @@ public class Boletas implements Serializable {
 		this.pelicula = pelicula;
 	}
 
+	public Byte getEstadoBoleta() {
+        return estadoBoleta;
+    }
+
+    public void setEstadoBoleta(Byte estadoBoleta) {
+        this.estadoBoleta = estadoBoleta;
+    }
+
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Boletas [id_boleta=");
-		builder.append(id_boleta);
-		builder.append(", asiento_asignado=");
-		builder.append(asiento_asignado);
-		builder.append(", tipoBoleta=");
-		builder.append(tipoBoleta);
-		builder.append(", pelicula=");
-		builder.append(pelicula);
-		builder.append("]");
-		return builder.toString();
+		return "Boletas [id_boleta=" + id_boleta + ", asiento_asignado=" + asiento_asignado + ", tipoBoleta="
+				+ tipoBoleta + ", pelicula=" + pelicula + ", estadoBoleta=" + estadoBoleta + "]";
 	}
+	
 }

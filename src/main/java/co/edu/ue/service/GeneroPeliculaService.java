@@ -21,13 +21,11 @@ public class GeneroPeliculaService implements IGeneroPeliculaService {
     }
 
     @Override
-    @Transactional
     public GeneroPelicula guardar(GeneroPelicula genero) {
         return generoPeliculaDao.guardarGenero(genero);
     }
 
     @Override
-    @Transactional
     public GeneroPelicula actualizar(GeneroPelicula genero) {
         return generoPeliculaDao.actualizarGenero(genero);
     }
@@ -39,7 +37,15 @@ public class GeneroPeliculaService implements IGeneroPeliculaService {
 
     @Override
     @Transactional
-    public void eliminar(int id) {
-        generoPeliculaDao.eliminarGenero(id);
+    public void darDeBaja(int id) {
+        GeneroPelicula genero = generoPeliculaDao.busquedaPorId(id);
+        if (genero == null) {
+            throw new IllegalArgumentException("El ID no existe");
+        }
+        if (genero.getEstadoGenero() == 0) {
+            throw new IllegalStateException("El estado del usuario es inactivo");
+        }
+        generoPeliculaDao.darDeBaja(id);
     }
 }
+

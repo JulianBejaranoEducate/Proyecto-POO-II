@@ -16,7 +16,7 @@ public class PeliculaDao implements IPeliculaDao {
 
     @Override
     public List<Pelicula> listaCompleta() {
-        return jpa.findAll();
+        return jpa.findByEstadoPelicula((byte) 1);
     }
 
     @Override
@@ -35,7 +35,11 @@ public class PeliculaDao implements IPeliculaDao {
     }
 
     @Override
-    public void eliminarPelicula(int id) {
-        jpa.deleteById(id);
+    public void darDeBajaPelicula(int id) {
+        Pelicula pelicula = jpa.findById(id).orElse(null);
+        if (pelicula != null) {
+            pelicula.setEstadoPelicula((byte) 0); 
+            jpa.save(pelicula);
+        }
     }
 }

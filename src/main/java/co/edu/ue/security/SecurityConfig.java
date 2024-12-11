@@ -29,13 +29,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(cus -> cus.disable())
-        				// Rutas para Boletas
-                .authorizeHttpRequests(aut -> aut.requestMatchers(HttpMethod.POST, "boletas-add").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "boletas-all").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "boletas-update").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "boletas-id").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "boletas-delete").hasRole("ADMIN")
-                		
+                .authorizeHttpRequests(aut -> aut
+                        // Rutas para Boletas
+                        .requestMatchers(HttpMethod.POST, "/boletas").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/boletas").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/boletas").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/boletas/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/boletas/{id}").hasRole("ADMIN")
+                        
                         // Rutas para Usuarios
                         .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/usuarios").hasRole("ADMIN")
@@ -51,25 +52,32 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/funciones/{id}").hasRole("ADMIN")
 
                         // Rutas para Peliculas
-                        .requestMatchers(HttpMethod.POST, "pelicula-sav").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "pelicula-all").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "pelicula-id").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "pelicula-up").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "pelicula-delete").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/pelicula-sav").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/pelicula-all").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/pelicula-id").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/pelicula-up").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/pelicula/{id}").hasRole("ADMIN")
 
                         // Rutas para GeneroPelicula
-                        .requestMatchers(HttpMethod.POST, "genero-sav").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "genero-all").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "genero-id").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "genero-up").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "genero-delete").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/Generopelicula").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/Generopelicula").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/Generopelicula/{id}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/Generopelicula").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/Generopelicula/{id}").hasRole("ADMIN")
                         
                         // Rutas para TipoBoleta
-                        .requestMatchers(HttpMethod.POST, "tipoBoleta-add").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "tipoBoleta-all").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.GET, "tipoBoleta-id").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "tipoBoleta-update").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "tipoBoleta-delete").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/tipoBoleta-add").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/tipoBoleta-all").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/tipoBoleta-id").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/tipoBoleta-update").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/tipoBoleta-delete").hasRole("ADMIN")
+
+                        // Rutas para Factura
+                        .requestMatchers(HttpMethod.POST, "/facturas").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/facturas").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/facturas/{id}").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/facturas").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/facturas/{id}").hasRole("ADMIN")
                 ).httpBasic(Customizer.withDefaults());
         return http.build();
     }

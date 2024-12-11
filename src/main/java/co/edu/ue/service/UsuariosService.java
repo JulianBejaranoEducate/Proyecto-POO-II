@@ -42,6 +42,13 @@ public class UsuariosService implements IUsuarioService {
 
     @Override
     public void darDeBaja(int id) {
+        Usuarios usuario = usuarioDao.busquedaPorId(id);
+        if (usuario == null) {
+            throw new IllegalArgumentException("El ID no existe");
+        }
+        if (usuario.getEstadoUsuario() == 0) {
+            throw new IllegalStateException("El estado del usuario es inactivo");
+        }
         usuarioDao.darDeBajaUsuario(id);
     }
 

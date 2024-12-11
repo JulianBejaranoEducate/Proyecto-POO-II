@@ -30,6 +30,9 @@ public class Pelicula implements Serializable {
     @Column(name = "id_genero")
     private int idGenero;
 
+    @Column (name = "estadoPelicula")
+    private Byte estadoPelicula;
+
     //////////////////////////////////////////
     
     public Pelicula() {
@@ -66,6 +69,14 @@ public class Pelicula implements Serializable {
     public void setIdGenero(int idGenero) {
         this.idGenero = idGenero;
     }
+    
+    public Byte getEstadoPelicula() {
+        return estadoPelicula;
+    }
+
+    public void setEstadoPelicula(Byte estadoPelicula) {
+        this.estadoPelicula = estadoPelicula;
+    }
 
     @Override
     public String toString() {
@@ -75,6 +86,7 @@ public class Pelicula implements Serializable {
         sb.append(", nombre=").append(nombre);
         sb.append(", idFuncion=").append(idFuncion);
         sb.append(", idGenero=").append(idGenero);
+        sb.append(", estadoPelicula=").append(estadoPelicula);
         sb.append('}');
         return sb.toString();
     }

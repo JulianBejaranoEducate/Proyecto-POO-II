@@ -38,8 +38,14 @@ public class PeliculaService implements IPeliculaService {
     }
 
     @Override
-    @Transactional
-    public void eliminar(int id) {
-        peliculaDao.eliminarPelicula(id);
+    public void darDeBaja(int id) {
+        Pelicula pelicula = peliculaDao.busquedaPorId(id);
+        if (pelicula == null) {
+            throw new IllegalArgumentException("El ID no existe");
+        }
+        if (pelicula.getEstadoPelicula() == 0) {
+            throw new IllegalStateException("El estado del usuario es inactivo");
+        }
+        peliculaDao.darDeBajaPelicula(id);
     }
 }

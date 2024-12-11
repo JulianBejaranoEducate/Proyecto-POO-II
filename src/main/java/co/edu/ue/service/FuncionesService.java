@@ -40,6 +40,13 @@ public class FuncionesService implements IFuncionesService {
     @Override
     @Transactional
     public void darDeBaja(int id) {
+        Funciones funciones = funcionesDao.busquedaPorId(id);
+        if (funciones == null) {
+            throw new IllegalArgumentException("El ID no existe");
+        }
+        if (funciones.getEstadoFuncion() == 0) {
+            throw new IllegalStateException("El estado del usuario es inactivo");
+        }
         funcionesDao.darDeBajaFuncion(id);
     }
 }

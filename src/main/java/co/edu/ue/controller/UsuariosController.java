@@ -66,7 +66,13 @@ public class UsuariosController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> darDeBajaUsuario(@PathVariable int id) {
+        try{
         usuariosService.darDeBaja(id);
         return ResponseEntity.ok("Usuario dado de baja con éxito");
+    } catch (IllegalArgumentException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    } catch (IllegalStateException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
     }
 }

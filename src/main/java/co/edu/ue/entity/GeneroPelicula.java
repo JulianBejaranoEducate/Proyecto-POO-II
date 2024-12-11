@@ -24,6 +24,9 @@ public class GeneroPelicula implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "estadoGenero")
+    private Byte estadoGenero;
+
     public GeneroPelicula() {
     }
 
@@ -43,12 +46,21 @@ public class GeneroPelicula implements Serializable {
         this.nombre = nombre;
     }
 
+    public Byte getEstadoGenero() {
+        return estadoGenero;
+    }
+
+    public void setEstadoGenero(Byte estadoGenero) {
+        this.estadoGenero = estadoGenero;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("GeneroPelicula{");
         sb.append("idGenero=").append(idGenero);
         sb.append(", nombre=").append(nombre);
+        sb.append(", estadoGenero=").append(estadoGenero);
         sb.append('}');
         return sb.toString();
     }

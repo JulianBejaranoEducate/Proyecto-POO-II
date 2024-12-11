@@ -9,5 +9,5 @@ public interface IGeneroPeliculaDao {
     GeneroPelicula guardarGenero(GeneroPelicula genero);
     GeneroPelicula actualizarGenero(GeneroPelicula genero);
     GeneroPelicula busquedaPorId(int id);
-    void eliminarGenero(int id);
+    void darDeBaja(int id);
 }

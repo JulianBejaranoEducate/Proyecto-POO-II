@@ -9,5 +9,5 @@ public interface IPeliculaDao {
     Pelicula guardarPelicula(Pelicula pelicula);
     Pelicula actualizarPelicula(Pelicula pelicula);
     Pelicula busquedaPorId(int id);
-    void eliminarPelicula(int id);
+    void darDeBajaPelicula(int id);
 }

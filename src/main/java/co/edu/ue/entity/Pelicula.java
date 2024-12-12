@@ -30,7 +30,7 @@ public class Pelicula implements Serializable {
     @Column(name = "id_genero")
     private int idGenero;
 
-    @Column (name = "estadoPelicula")
+    @Column(name = "estadoPelicula")
     private Byte estadoPelicula;
 
     //////////////////////////////////////////

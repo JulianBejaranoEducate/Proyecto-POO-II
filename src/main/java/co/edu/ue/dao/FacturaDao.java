@@ -10,7 +10,6 @@ import co.edu.ue.jpa.IFacturaJpa;
 
 @Repository
 public class FacturaDao implements IFacturaDao {
-
     @Autowired
     private IFacturaJpa jpa;
 
@@ -38,7 +37,7 @@ public class FacturaDao implements IFacturaDao {
     public void eliminarFacturaId(int id) {
         Factura factura = jpa.findById(id).orElse(null);
         if (factura != null) {
-            factura.setEstadoFactura((byte) 0); // Cambia el estado a inactivo
+            factura.setEstadoFactura(0); // Cambia el estado a inactivo
             jpa.save(factura);
         }
     }

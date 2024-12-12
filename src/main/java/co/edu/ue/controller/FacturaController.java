@@ -28,7 +28,7 @@ public class FacturaController {
     @PostMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Factura> addFactura(@RequestBody Factura factura) {
         if (factura.getEstadoFactura() == null) {
-            factura.setEstadoFactura((byte) 1); // Asigna un valor por defecto si es null
+            factura.setEstadoFactura(1); // Asigna un valor por defecto si es null
         }
         Factura savedFactura = facturaService.addFactura(factura);
         return new ResponseEntity<>(savedFactura, HttpStatus.CREATED);
@@ -45,7 +45,7 @@ public class FacturaController {
     @PutMapping(consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Factura> putFactura(@RequestBody Factura factura) {
         if (factura.getEstadoFactura() == null) {
-            factura.setEstadoFactura((byte) 1); // Asigna un valor por defecto si es null
+            factura.setEstadoFactura(1); // Asigna un valor por defecto si es null
         }
         Factura updatedFactura = facturaService.updateFactura(factura);
         return new ResponseEntity<>(updatedFactura, HttpStatus.ACCEPTED);

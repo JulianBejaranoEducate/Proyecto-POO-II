@@ -136,4 +136,29 @@ public class Factura implements Serializable {
     public void setEstadoFactura(Integer estadoFactura) {
         this.estadoFactura = estadoFactura;
     }
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Factura [id_factura=");
+		builder.append(id_factura);
+		builder.append(", fecha_factura=");
+		builder.append(fecha_factura);
+		builder.append(", id_usuario=");
+		builder.append(id_usuario);
+		builder.append(", metodo_pago=");
+		builder.append(metodo_pago);
+		builder.append(", id_boleta=");
+		builder.append(id_boleta);
+		builder.append(", precio_unitario=");
+		builder.append(precio_unitario);
+		builder.append(", cantidad=");
+		builder.append(cantidad);
+		builder.append(", total=");
+		builder.append(total);
+		builder.append(", estadoFactura=");
+		builder.append(estadoFactura);
+		builder.append("]");
+		return builder.toString();
+	}
 }

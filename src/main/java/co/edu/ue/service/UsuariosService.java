@@ -77,7 +77,7 @@ public class UsuariosService implements IUsuarioService {
 
         // Validar número de teléfono
         if (!Pattern.matches(PHONE_REGEX, usuario.getNumeroUser())) {
-            throw new IllegalArgumentException("El numero de teléfono debe contener exactamente 10 digitos.");
+            throw new IllegalArgumentException("El numero de telefono debe contener exactamente 10 digitos.");
         }
 
         // Validar estado del usuario (opcional)

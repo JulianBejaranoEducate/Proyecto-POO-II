@@ -23,10 +23,11 @@ public class PeliculaService implements IPeliculaService {
     @Override
     @Transactional
     public Pelicula guardar(Pelicula pelicula) {
+    	validarDatosPelicula(pelicula);
         return peliculaDao.guardarPelicula(pelicula);
     }
 
-    @Override
+	@Override
     @Transactional
     public Pelicula actualizar(Pelicula pelicula) {
         return peliculaDao.actualizarPelicula(pelicula);
@@ -48,4 +49,9 @@ public class PeliculaService implements IPeliculaService {
         }
         peliculaDao.darDeBajaPelicula(id);
     }
+    
+    private void validarDatosPelicula(Pelicula pelicula) {
+		// TODO Auto-generated method stub
+		
+	}
 }
